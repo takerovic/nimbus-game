@@ -8,6 +8,7 @@ from animation import *
 from pygame import *
 from nimbus import Nimbus
 from cloud import Cloud
+from floor import Floor
 from inputHandler import InputHandler
 import pygame, sys, time
 
@@ -23,12 +24,17 @@ nimbus_animation.AddKeyPoint(5, "nimbus-sprite\\nimbus-fall.png")
 
 nimbes = Nimbus()
 
-currentScene.AddGameObject(nimbes)
+floor = Floor()
+floor.Position = (0, 1000)
+floor.Size = (1000, 320)
 
-for i in range(0,100):
+currentScene.AddGameObject(nimbes)
+currentScene.AddGameObject(floor)
+
+for i in range(0,250):
     cloud = Cloud()
+    cloud.Position = (random.uniform(0, 480), random.uniform(-1000, 10000))
     currentScene.AddGameObject(cloud)
-    cloud.Position = (random.randint(0,480), random.uniform(1000, -5000))
 
 currentCamera = nimbes
 

@@ -40,12 +40,7 @@ class Sprite(GameObject):
 
     def Draw(self, screen: surface, cam: GameCamera):
         self.Image = pygame.transform.scale(self.Image, self.Size)
-        if not cam == self:
-            self.DisplayedPosition = (self.Position[0], (self.Position[1] - cam.Position[1]))
-            screen.blit(self.Image, self.DisplayedPosition)
-        else:
-            self.DisplayedPosition = self.Position
-            screen.blit(self.Image, self.Position)
+        screen.blit(self.Image, self.DisplayedPosition)
 
         super().Draw(screen, cam)
 

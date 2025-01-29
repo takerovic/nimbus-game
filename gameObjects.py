@@ -10,8 +10,14 @@ class GameObject:
     def SetSize(self, size: (float, float)):
         self.Size = size
 
-    def Draw(self, screen, cam):
+    def Draw(self, screen: surface, cam):
         self.Rectangle = Rect(self.DisplayedPosition[0], self.DisplayedPosition[1], self.Size[0], self.Size[1])
+
+        if self != cam:
+            self.DisplayedPosition = (self.Position[0] - cam.Position[0], self.Position[1] - cam.Position[1])
+        else:
+            self.DisplayedPosition = (screen.get_width()/2, screen.get_height()/2)
+
         pass
 
 

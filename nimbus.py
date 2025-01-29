@@ -14,7 +14,9 @@ class Nimbus(Sprite):
         JumpAnim.AddKeyPoint(0.1, "nimbus-sprite\\nimbus-jump.png")
         JumpAnim.Looped = True
         self.JumpingAnimation = JumpAnim
-        self.Size = (100,100)
+        self.Size = (100, 100)
+
+        self.DisplayedPosition = (480, 320)
 
         InputHandler.KeyDownEvent.AddMethod(self.OnKeyDown)
         InputHandler.KeyUpEvent.AddMethod(self.OnKeyUp)

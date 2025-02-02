@@ -9,19 +9,22 @@ import time
 class Floor(GameObject):
     def __init__(self):
         super().__init__()
-        threading.Thread(target=self.Collision).start()
+        self.Color = (0, 0, 0)
         pass
 
     def Collision(self):
-        while True:
+        while self.Scene.Running:
             nimbes: Nimbus = Nimbus.Singleton
             if nimbes.Rectangle.colliderect(self.Rectangle):
-                print("coll")
-                nimbes.FreeFallValue = -2
+                nimbes.FreeFallValue = -3
 
             time.sleep(0.01)
 
     def Draw(self, screen: surface, cam):
         super().Draw(screen, cam)
-        pygame.draw.rect(screen, (0,0,0), self.Rectangle)
+        pygame.draw.rect(screen, self.Color, self.Rectangle)
+
+    def Start(self):
+        super().Start()
+        threading.Thread(target=self.Collision).start()
 

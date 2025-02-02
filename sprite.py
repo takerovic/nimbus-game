@@ -7,19 +7,23 @@ import time
 
 
 class Sprite(GameObject):
+    Sprites = []
+
     def __init__(self, texturepath: str):
         super().__init__()
 
         self.Image = pygame.image.load(texturepath)
 
         self.PlayingAnimation = False
+        Sprite.Sprites.append(self)
+
 
     def PlayAnimation(self, anim: Animation):
         def KeypointPlaythrough():
             oldimage = self.Image
             self.PlayingAnimation = True
             if anim.Looped:
-                while self.PlayingAnimation:
+                while self.PlayingAnimation and self.Scene.Running:
                     for kp in anim.KeyPoints:
                         Keypoint: AnimationKeypoint = kp
                         self.Image = Keypoint.Image
@@ -46,4 +50,7 @@ class Sprite(GameObject):
 
     def Destroy(self):
         self.Position = (-10000, -10000)
+
+    def OnMouseClick(self):
+        pass
 
